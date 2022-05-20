@@ -23,7 +23,7 @@ $arr_entries = json_decode($json_data, true);
         <td><?php echo $entry['create']; ?><br><?php echo $entry['edit']; ?></td>
         <td><?php echo $entry['content']; ?></td>
         <td>
-            <form action="index.php?action=change" method="post">
+            <form action="index.php?action=edit" method="post">
                 <input type="hidden" value="<?php echo $entry['id']; ?>" name="id">
                 <button class="change" type="submit">Ändern</button>
             </form>

@@ -10,19 +10,20 @@ if ($action === 'new_entry') {
 
 // Aktion: Eintrag ändern
 if ($action === 'edit_entry') {
+    $id = $_REQUEST['id'] ?? 0;
+    $id = intval($id);
+
     // speichern
-    if (isset($_REQUEST['save'])) {
-        // ...
+    if (isset($_REQUEST['update'])) {
+        if ($id !== 0)
+            update_entry($id);
     }
     // löschen
     if (isset($_REQUEST['delete'])) {
-        if (isset($_REQUEST['id'])) {
-            $id = intval($_REQUEST['id']);
-            if ($id !== 0)
+        if ($id !== 0)
             delete_entry($id);
-        }
-        $action = 'show';
     }
+    $action = 'show';
 }
 
 // Seite anzeigen
@@ -71,6 +72,31 @@ function delete_entry($id): void
     foreach ($arr_entries as $i => $entry) {
         if ($entry['id'] === $id) {
             array_splice($arr_entries, $i, 1);
+            break;
+        }
+    }
+
+    // Daten speichern
+    file_put_contents("./data/entries.json", json_encode($arr_entries), LOCK_EX);
+}
+
+function update_entry($id): void
+{
+    date_default_timezone_set('Europe/Berlin');
+    $now = date('Y-m-d H:i:s');
+
+    // Daten lesen
+    $json_data = file_get_contents("data/entries.json");
+    $arr_entries = json_decode($json_data, true);
+
+    // Eintrag aktualisieren
+    foreach ($arr_entries as &$entry) {
+        if ($entry['id'] === $id) {
+            if (isset($_REQUEST['content'])) {
+                $entry['edit'] = $now;
+                $entry['content'] = $_REQUEST['content'];
+            }
+            break;
         }
     }
 
