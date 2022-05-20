@@ -1,0 +1,2 @@
+# Blog
+Ein einfaches Tagebuch
