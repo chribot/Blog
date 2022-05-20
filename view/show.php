@@ -6,42 +6,30 @@
     <script src="../js/script.js"></script>
 </head>
 <body onload="addEvents();">
+<?php
+$json_data = file_get_contents("data/entries.json");
+$arr_entries = json_decode($json_data, true);
+?>
 <table>
     <tr>
         <td></td>
         <td></td>
-        <td><a href="../index.php?action=new"><button id="new">Neu</button></a></td>
+        <td><a href="index.php?action=new">
+                <button id="new">Neu</button>
+            </a></td>
     </tr>
+<?php foreach ($arr_entries as $entry) { ?>
     <tr>
-        <td>2022-05-20 10:52</td>
-        <td>Dies ist der ein Beispieleintrag.</td>
+        <td><?php echo $entry['create']; ?><br><?php echo $entry['edit']; ?></td>
+        <td><?php echo $entry['content']; ?></td>
         <td>
-            <form action="../index.php?action=change" method="post">
-                <input type="hidden" value="1" name="id">
+            <form action="index.php?action=change" method="post">
+                <input type="hidden" value="<?php echo $entry['id']; ?>" name="id">
                 <button class="change" type="submit">Ändern</button>
             </form>
         </td>
     </tr>
-    <tr>
-        <td>2022-05-20 06:34</td>
-        <td>Dies ist der ein Beispieleintrag.</td>
-        <td>
-            <form action="../index.php?action=change" method="post">
-                <input type="hidden" value="2" name="id">
-                <button class="change" type="submit">Ändern</button>
-            </form>
-        </td>
-    </tr>
-    <tr>
-        <td>2022-05-18 14:11</td>
-        <td>Dies ist der ein Beispieleintrag.</td>
-        <td>
-            <form action="../index.php?action=change" method="post">
-                <input type="hidden" value="3" name="id">
-                <button class="change" type="submit">Ändern</button>
-            </form>
-        </td>
-    </tr>
+<?php } ?>
 </table>
 </body>
 </html>
