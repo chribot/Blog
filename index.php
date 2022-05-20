@@ -8,6 +8,23 @@ if ($action === 'new_entry') {
     $action = 'show';
 }
 
+// Aktion: Eintrag ändern
+if ($action === 'edit_entry') {
+    // speichern
+    if (isset($_REQUEST['save'])) {
+        // ...
+    }
+    // löschen
+    if (isset($_REQUEST['delete'])) {
+        if (isset($_REQUEST['id'])) {
+            $id = intval($_REQUEST['id']);
+            if ($id !== 0)
+            delete_entry($id);
+        }
+        $action = 'show';
+    }
+}
+
 // Seite anzeigen
 include 'view/' . $action . '.php';
 
@@ -39,6 +56,23 @@ function new_entry(): void
 
     // neuen Eintrag einfügen
     $arr_entries[] = $entry;
+
+    // Daten speichern
+    file_put_contents("./data/entries.json", json_encode($arr_entries), LOCK_EX);
+}
+
+function delete_entry($id): void
+{
+    // Daten lesen
+    $json_data = file_get_contents("data/entries.json");
+    $arr_entries = json_decode($json_data, true);
+
+    // Eintrag löschen
+    foreach ($arr_entries as $i => $entry) {
+        if ($entry['id'] === $id) {
+            array_splice($arr_entries, $i, 1);
+        }
+    }
 
     // Daten speichern
     file_put_contents("./data/entries.json", json_encode($arr_entries), LOCK_EX);

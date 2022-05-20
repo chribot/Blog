@@ -1,3 +1,7 @@
+<?php
+$json_data = file_get_contents("data/entries.json");
+$arr_entries = json_decode($json_data, true);
+?>
 <!doctype html>
 <html lang="de">
 <head>
@@ -6,10 +10,6 @@
     <script src="../js/script.js"></script>
 </head>
 <body onload="addEvents();">
-<?php
-$json_data = file_get_contents("data/entries.json");
-$arr_entries = json_decode($json_data, true);
-?>
 <table>
     <tr>
         <td></td>
