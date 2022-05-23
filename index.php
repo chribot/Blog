@@ -26,10 +26,6 @@ if ($action === 'edit_entry') {
     $action = 'show';
 }
 
-// Seite anzeigen
-include 'view/' . $action . '.php';
-
-
 //
 // Funktionen
 //
@@ -103,3 +99,19 @@ function update_entry($id): void
     // Daten speichern
     file_put_contents("./data/entries.json", json_encode($arr_entries), LOCK_EX);
 }
+?>
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Christophs Blog</title>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="addEvents();">
+<?php
+// Seite anzeigen
+include 'view/' . $action . '.php';
+?>
+</body>
+</html>
