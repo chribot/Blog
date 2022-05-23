@@ -1,0 +1,145 @@
+/*
+    icons - https://icons.getbootstrap.com/
+*/
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(20,20,20);
+    font-family: Verdana,sans-serif;
+    color: antiquewhite;
+}
+#content {
+    position: relative;
+    min-height: calc(100% - 30px);
+    width: calc(600px - 32px);
+    margin: 0 calc((100% - 600px)/2);
+    border: 1px solid rgb(50,50,50);
+    border-top: none;
+    border-bottom: none;
+    background-color: rgb(20,20,20);
+    padding: 15px;
+}
+.entry {
+    display: flex;
+    margin-bottom: 15px;
+    background-color: rgb(40,40,40);
+    border-radius: 15px;
+}
+.created {
+    width: 130px;
+    background-color: indigo;
+    border-radius: 15px 0 0 15px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    cursor: default;
+}
+.day {
+    font-size: 50px;
+}
+.month {
+    font-size: 20px;
+}
+.year {
+    font-size: 16px;
+}
+.day, .month, .year {
+    width: 100%;
+    text-align: center;
+}
+.message {
+    min-height: 110px;
+    width: 440px;
+    padding: 10px 15px 10px 15px;
+    display: flex;
+    flex-direction: column;
+}
+.message-text {
+    flex-grow: 1;
+}
+.message-footer {
+    border-top: 1px solid rgb(60,60,60);
+    padding-top: 10px;
+    display: flex;
+}
+.edited {
+    font-size: 14px;
+    color: rgb(90,90,90);
+    padding-left: 10px;
+    flex-grow: 1;
+    transition: color 0.3s ease-out;
+    cursor: default;
+}
+.edited:hover{
+    color: rgb(120,120,120);
+}
+#new {
+    position: fixed;
+    top: 15px;
+    right: calc((100% - 600px)/2);
+    transform: translateX(100%);
+    width: 50px;
+}
+#new::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 40px;
+    height: 50px;
+    background-color: indigo;
+    z-index: -1;
+}
+#new::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "Neuer Eintrag";
+    width: 112px;
+    height: 50px;
+    background-color: rgb(40,40,40);
+    border-radius: 5px;
+    padding: 0 10px 0 20px;
+    transition: transform 0.2s ease-out;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    z-index: -2;
+}
+#new:hover::after {
+    transform: translateX(calc(100% - 10px));
+}
+#new>a {
+    height: 50px;
+    display: block;
+}
+#b-new {
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    font-size: 0;
+    background-color: antiquewhite;
+    color: indigo;
+    border-radius: 10px;
+}
+.bi-plus-square-fill {
+    width: 50px;
+    height: 50px;
+}
+.b-change {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0 10px;
+    color: antiquewhite;
+    transition: color 0.2s ease-out;
+}
+.b-change:hover {
+    color: rgb(188, 96, 255);
+}
+.bi-pencil-square {
+    width: 20px;
+    height: 20px;
+}
