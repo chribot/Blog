@@ -16,7 +16,7 @@ if (isset($_POST['id'])) {
 ?>
 <form action="index.php" method="post">
     <p><label for="entry">Blog Eintrag ändern:</label></p>
-    <textarea id="entry" name="content" rows="8" cols="57"><?php echo $content; ?></textarea>
+    <textarea id="entry" name="content" rows="8" cols="57" placeholder="Bitte Text eingeben..."><?php echo $content; ?></textarea>
     <input type="hidden" name="action" value="edit_entry">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <br>
