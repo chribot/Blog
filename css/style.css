@@ -35,6 +35,10 @@ body {
     flex-wrap: wrap;
     flex-shrink: 0;
     cursor: default;
+    transition: background-color 0.3s ease-out;
+}
+.created:hover {
+    background-color: #440275;
 }
 .day {
     font-size: 50px;
@@ -75,6 +79,24 @@ body {
 .edited:hover{
     color: rgb(120,120,120);
 }
+form>p {
+    margin-bottom: 9px;
+}
+label {
+    background-color: indigo;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+textarea {
+    background-color: rgb(40,40,40);
+    border: none;
+    border-radius: 0 10px 10px 10px;
+    padding: 10px;
+    color: antiquewhite;
+    font-size: 16px;
+}
+/* Buttons */
 #new {
     position: fixed;
     top: 15px;
@@ -142,4 +164,29 @@ body {
 .bi-pencil-square {
     width: 20px;
     height: 20px;
+}
+#edit-buttons {
+    display: flex;
+    height: 50px;
+}
+.button-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    height: 50px;
+}
+.b-save, .b-delete {
+    width: 90px;
+    background-color: indigo;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: antiquewhite;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out, padding 0.2s ease-out;
+}
+.b-save:hover, .b-delete:hover {
+    background-color: #440275;
+    padding: 10px 0;
 }

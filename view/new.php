@@ -7,10 +7,12 @@
 <body>
 <form action="index.php" method="post">
     <p><label for="entry">Neuer Blog Eintrag:</label></p>
-    <textarea id="entry" name="content" rows="8" cols="70"></textarea>
+    <textarea id="entry" name="content" rows="8" cols="57"></textarea>
     <input type="hidden" name="action" value="new_entry">
     <br>
-    <input type="submit" value="Speichern">
+    <div class="button-wrapper">
+        <input class="b-save" type="submit" value="Speichern">
+    </div>
 </form>
 </body>
 </html>
