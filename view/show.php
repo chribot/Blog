@@ -1,13 +1,13 @@
 <?php
-$json_data = file_get_contents("data/entries.json");
-$arr_entries = json_decode($json_data, true);
 setlocale(LC_TIME, "de_DE");
-?>
-<?php foreach ($arr_entries as $entry) { ?>
+$diary = new Tagebuch();
+$arr_entries = $diary->getAllEntries();
+
+foreach ($arr_entries as $entry) { ?>
     <div class="entry">
         <div class="created">
         <?php
-            $create_timestamp = strtotime($entry['create']);
+            $create_timestamp = strtotime($entry->getCreateDate());
             $day = date('d', $create_timestamp);
             $month = strftime("%b", $create_timestamp);
             $year = date('Y', $create_timestamp);
@@ -18,14 +18,14 @@ setlocale(LC_TIME, "de_DE");
         </div>
         <div class="message">
             <div class="message-text">
-                <?php echo $entry['content']; ?>
+                <?php echo $entry->getContent(); ?>
             </div>
             <div class="message-footer">
                 <div class="edited">
-                    <?php echo 'Bearbeitet: ' . substr($entry['edit'], 0, -3); ?>
+                    <?php echo 'Bearbeitet: ' . substr($entry->getEditDate(), 0, -3); ?>
                 </div>
                 <form class="edit-form" action="index.php?action=edit" method="post">
-                    <input type="hidden" value="<?php echo $entry['id']; ?>" name="id">
+                    <input type="hidden" value="<?php echo $entry->getId(); ?>" name="id">
                     <button class="b-change" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
