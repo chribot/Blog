@@ -1,8 +1,9 @@
 <?php
-$id = $_POST['id'] ?? 0;
-$diary = new Tagebuch();
+/**
+ * @var $diary
+ * @var $id
+ */
 $entry = $diary->getEntryById($id);
-$content = $entry->getContent();
 ?>
 <form action="index.php" method="post">
     <p><label for="entry">Blog Eintrag ändern:</label></p>

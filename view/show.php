@@ -1,12 +1,14 @@
 <?php
-setlocale(LC_TIME, "de_DE");
-$diary = new Tagebuch();
+/**
+ * @var $diary
+ */
 $arr_entries = $diary->getAllEntries();
 
 foreach ($arr_entries as $entry) { ?>
     <div class="entry">
         <div class="created">
         <?php
+            setlocale(LC_TIME, "de_DE");
             $create_timestamp = strtotime($entry->getCreateDate());
             $day = date('d', $create_timestamp);
             $month = strftime("%b", $create_timestamp);

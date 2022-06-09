@@ -21,7 +21,10 @@ class Eintrag implements JsonSerializable
         $this->content = $content;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array
+     */
+    public function jsonSerialize(): array
     {
         return [
             "id" => $this->id,

@@ -1,36 +1,36 @@
 <?php
+include_once 'config.php';
+include_once 'class/DbConn.php';
 include_once 'class/Tagebuch.php';
 
-// lese Aktion (default = show)
+// GET + POST Variablen
 $action = $_REQUEST['action'] ?? 'show';
+$id = $_REQUEST['id'] ?? 0;
+$content = $_REQUEST['content'] ?? '';
+$doUpdate = $_REQUEST['update'] ?? false;
+$doDelete = $_REQUEST['delete'] ?? false;
 
 $diary = new Tagebuch();
 
 // Aktion: neuer Eintrag
-if ($action === 'new_entry') {
-    $diary->newEntry();
+if ($action === 'new_entry' && $content !== '') {
+    $diary->newEntry($content);
     $action = 'show';
 }
 
 // Aktion: Eintrag ändern
 if ($action === 'edit_entry') {
-    $id = $_REQUEST['id'] ?? 0;
     $id = intval($id);
-
     // speichern
-    if (isset($_REQUEST['update'])) {
-        if ($id !== 0)
-            $diary->updateEntry($id);
+    if ($doUpdate && $id !== 0) {
+        $diary->updateEntry($id, $content);
     }
     // löschen
-    if (isset($_REQUEST['delete'])) {
-        if ($id !== 0)
-            $diary->deleteEntry($id);
+    if ($doDelete && $id !== 0) {
+        $diary->deleteEntry($id);
     }
     $action = 'show';
 }
-
-
 ?>
 <!doctype html>
 <html lang="de">
