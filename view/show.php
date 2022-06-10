@@ -17,9 +17,7 @@ foreach ($arr_entries as $entry) { ?>
             <div class="year"><?php echo $year; ?></div>
         </div>
         <div class="message">
-            <div class="message-text">
-                <?php echo $entry->getContent(); ?>
-            </div>
+            <div class="message-text"><?php echo $entry->getContent(); ?></div>
             <div class="message-footer">
                 <div class="edited">
                     <?php echo 'Bearbeitet: ' . substr($entry->getEditDate(), 0, -3); ?>
